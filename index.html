@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101611" />
+  <title>Monster Mile — Mox &amp; Nova</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Monster Mile home"><span class="brand-mark">M</span><span>MONSTER<span class="brand-light">MILE</span></span></a>
+      <div class="chapter"><span class="live-dot"></span> CHAPTER 01 <span class="chapter-name">· THE SUNBAKED TRAIL</span></div>
+      <button class="sound-button" id="soundBtn" aria-label="Toggle sound"><span id="soundIcon">♫</span><span class="sound-label">SOUND ON</span></button>
+    </header>
+
+    <section class="game-layout" aria-label="Monster Mile game">
+      <div class="game-column">
+        <div class="hud">
+          <div class="hud-stat distance-stat"><div class="hud-label">DISTANCE</div><div class="hud-value"><span id="distance">0</span><small>m</small></div></div>
+          <div class="route-track"><div class="route-fill" id="routeFill"></div><span class="route-start">START</span><span class="route-end">PIP</span><span class="route-car" id="routeCar">◆</span></div>
+          <div class="hud-stat bolt-stat"><div class="hud-label">SPARKS</div><div class="hud-value spark-value"><span class="spark-icon">✦</span><span id="sparks">0</span><small>/ 8</small></div></div>
+        </div>
+
+        <div class="viewport" id="viewport">
+          <canvas id="gameCanvas" aria-label="Side view of a monster truck driving over a desert trail"></canvas>
+          <div class="scene-tag"><span class="sun-icon">◉</span> RED ROCK CANYON <span class="tag-divider">/</span> 82°F</div>
+          <div class="weather">☀ <span>GOOD GRIP</span></div>
+          <div class="toast" id="toast" aria-live="polite"></div>
+          <div class="start-overlay" id="startOverlay">
+            <div class="overlay-sun"></div>
+            <div class="intro-copy"><div class="eyebrow"><span class="eyebrow-line"></span> A LITTLE MONSTER ADVENTURE</div><h1>BIG WHEELS.<br><em>BIGGER</em> HEART.</h1><p>Nova’s best pal Pip is waiting at the old lookout.<br>Take the bumpy way home—with your co-pilot Mox.</p><button class="start-button" id="startBtn">LET’S ROLL <span>↗</span></button><div class="start-hint">PRESS SPACE OR TAP GAS TO START</div></div>
+            <div class="intro-car">🚙</div>
+            <div class="intro-mox">👾<span>MOX</span></div>
+          </div>
+          <div class="finish-overlay hidden" id="finishOverlay"><div class="finish-card"><div class="finish-stars">✦ ✦ ✦</div><div class="eyebrow">LOOK WHO MADE IT</div><h2>HOME IS<br><em>BETTER TOGETHER.</em></h2><p id="finishMessage">Pip is safe, the truck is muddy, and Mox has a new story.</p><div class="finish-score"><span><b id="finalSparks">0</b> SPARKS</span><span><b id="finalTime">0:00</b> TIME</span></div><button class="start-button" id="againBtn">DRIVE AGAIN <span>↻</span></button></div></div>
+        </div>
+
+        <div class="controls-row">
+          <div class="control-help"><span class="keycap">←</span><span class="keycap">→</span> STEER <span class="help-divider">·</span><span class="keycap">SPACE</span> BOOST</div>
+          <div class="touch-controls"><button class="touch-btn brake" id="brakeBtn" aria-label="Brake">◀<small>BRAKE</small></button><button class="touch-btn gas" id="gasBtn" aria-label="Accelerate">▲<small>GAS</small></button><button class="touch-btn boost" id="boostBtn" aria-label="Boost">⚡<small>BOOST</small></button></div>
+          <div class="boost-meter"><span class="boost-label">MOX BOOST</span><div class="meter"><i id="boostFill"></i></div></div>
+        </div>
+      </div>
+
+      <aside class="copilot-panel">
+        <div class="panel-top"><span>YOUR COPILOT</span><span class="online"><i></i> RIDING ALONG</span></div>
+        <div class="mox-portrait" id="moxPortrait"><div class="portrait-glow"></div><div class="mox-art" aria-label="Mox the friendly purple monster"> <span class="horn horn-left"></span><span class="horn horn-right"></span><span class="mox-ear ear-left"></span><span class="mox-ear ear-right"></span><span class="mox-body"></span><span class="mox-eye eye-left"><i></i></span><span class="mox-eye eye-right"><i></i></span><span class="mox-cheek cheek-left"></span><span class="mox-cheek cheek-right"></span><span class="mox-mouth"></span><span class="mox-tooth"></span><span class="mox-freckle f1"></span><span class="mox-freckle f2"></span><span class="mox-freckle f3"></span><span class="mox-freckle f4"></span></div><div class="portrait-name">MOX<span>THE BRAVE-ISH</span></div><div class="mox-badge">✦</div></div>
+        <div class="mox-intro"><span class="quote-mark">“</span><p id="moxLine">Okay, Nova. I packed snacks, a map, and absolutely no fear. (Mostly.)</p></div>
+        <div class="personality"><div class="personality-title">MOX’S THING</div><p>Part pep-talk, part panic. <strong>100% your pal.</strong></p><div class="traits"><span>CHEERLEADER</span><span>SNACK EXPERT</span><span>BRAVE-ISH</span></div></div>
+        <div class="mission-card"><div class="mission-icon">⌖</div><div><div class="mission-title">TODAY’S MISSION</div><p>Find Pip at the lookout.<br><b>Bring the shiny sparks!</b></p></div></div>
+        <div class="panel-footer"><span>NO FRIEND LEFT BEHIND.</span><span>✦ 01 / 01</span></div>
+      </aside>
+    </section>
+    <footer class="bottom-note"><span>MADE FOR THE LONG WAY HOME</span><span>↑ HILL · ↓ DOWNSLOPE · GRAB ✦ SPARKS</span><span>MOX SAYS: YOU’VE GOT THIS!</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
